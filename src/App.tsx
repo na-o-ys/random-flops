@@ -1,25 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Box, ChakraProvider } from "@chakra-ui/react";
+import React, { useReducer } from "react";
+import { reducer } from "./action";
+import "./App.css";
+import { Board } from "./Board";
+import { Controller, ControllerProps } from "./Controller";
+import { getInitialState } from "./state";
 
 function App() {
+  const controllerProps: ControllerProps = {
+    onClickRandomizeFlop() {
+      dispatch({ type: "randomize_flop" });
+    },
+    onClickRandomizeTurn() {
+      dispatch({ type: "randomize_turn" });
+    },
+    onClickRandomizeRiver() {
+      dispatch({ type: "randomize_river" });
+    },
+    onClickClear() {
+      dispatch({ type: "clear" });
+    },
+  };
+
+  const [state, dispatch] = useReducer(reducer, getInitialState());
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      <Box
+        m={[2, 3, 4]}
+        h="100vh"
+        d="flex"
+        flexDir="column"
+        justifyContent="center"
+      >
+        <Box flexGrow={1} />
+        <Board board={state.board} />
+        <Box w="100%" d="flex" justifyContent="center">
+          <Controller {...controllerProps} />
+        </Box>
+        <Box flexGrow={1.5} />
+      </Box>
+    </ChakraProvider>
   );
 }
 
