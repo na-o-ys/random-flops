@@ -11,30 +11,33 @@ export interface ControllerProps {
 
 export function Controller(props: ControllerProps) {
   return (
-    <Box mt={[8, 12]}>
+    <Box mt={[8, 10, 14]}>
       <Button
         size="lg"
-        colorScheme="blackAlpha"
+        color="orange.400"
+        borderColor="orange.400"
         variant="outline"
-        mx={[2]}
+        mx={[2, 4]}
         onClick={props.onClickRandomizeFlop}
       >
         Flop
       </Button>
       <Button
         size="lg"
-        colorScheme="blackAlpha"
+        color="orange.400"
+        borderColor="orange.400"
         variant="outline"
-        mx={[2]}
+        mx={[2, 4]}
         onClick={props.onClickRandomizeTurn}
       >
         Turn
       </Button>
       <Button
         size="lg"
-        colorScheme="blackAlpha"
+        color="orange.400"
+        borderColor="orange.400"
         variant="outline"
-        mx={[2]}
+        mx={[2, 4]}
         onClick={props.onClickRandomizeRiver}
       >
         River

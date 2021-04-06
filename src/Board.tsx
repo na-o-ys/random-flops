@@ -17,13 +17,11 @@ export function Board(props: BoardProps) {
 
   return (
     <Box
-      maxW="860"
       w="100%"
       px={[2, 2, 8]}
-      py={[7, 9, 16]}
+      py={[10, 12, 16]}
       borderRadius={["xl", "2xl"]}
       backgroundColor="green.900"
-      mx="auto"
       boxShadow="dark-lg"
     >
       <Box d="flex">
@@ -57,13 +55,13 @@ export function CardContent({ card }: { card: Card }) {
     return `${n}`;
   };
   const fname = `card/${convert(card.number)}${card.suit.toUpperCase()}.jpg`;
-  const rotate = card.entropy[0] * 2.4 - 1.2;
-  const transX = card.entropy[1] * 6 - 3;
+  const rotate = card.entropy[0] * 2.8 - 1.4;
+  const transX = card.entropy[1] * 8 - 4;
   return (
     <AspectRatio ratio={691 / 1056}>
       <Box
         position="relative"
-        transform={["", "", `rotate(${rotate}deg) translateX(${transX}px)`]}
+        transform={["", `rotate(${rotate}deg) translateX(${transX}px)`]}
       >
         <Image
           src={fname}
