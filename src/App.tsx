@@ -24,12 +24,13 @@ function App() {
   };
 
   const [state, dispatch] = useReducer(reducer, getInitialState());
+  const innerHeight = `${window.innerHeight}px`;
 
   return (
     <ChakraProvider>
       <Box
         mx={[2, 3, "auto"]}
-        h="100vh"
+        h={[innerHeight, innerHeight, "100vh"]}
         maxW="860"
         d="flex"
         flexDir="column"
@@ -41,7 +42,7 @@ function App() {
         <Box w="100%" d="flex" justifyContent="center">
           <Controller {...controllerProps} />
         </Box>
-        <Box flexGrow={1.5} />
+        <Box flexGrow={1.3} />
         <Footer />
       </Box>
     </ChakraProvider>
