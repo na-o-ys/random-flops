@@ -1,52 +1,8 @@
-import { Button } from "@chakra-ui/button";
 import { Checkbox } from "@chakra-ui/checkbox";
 import { Image } from "@chakra-ui/image";
 import { Box, VStack } from "@chakra-ui/layout";
-import React from "react";
-
-export interface ControllerProps {
-  onClickRandomizeFlop: () => void;
-  onClickRandomizeTurn: () => void;
-  onClickRandomizeRiver: () => void;
-  onClickClear: () => void;
-}
-
-export function Controller(props: ControllerProps) {
-  return (
-    <Box mt={[8, 10, 14]}>
-      <Button
-        size="lg"
-        color="orange.400"
-        borderColor="orange.400"
-        variant="outline"
-        mx={[2, 4]}
-        onClick={props.onClickRandomizeFlop}
-      >
-        Flop
-      </Button>
-      <Button
-        size="lg"
-        color="orange.400"
-        borderColor="orange.400"
-        variant="outline"
-        mx={[2, 4]}
-        onClick={props.onClickRandomizeTurn}
-      >
-        Turn
-      </Button>
-      <Button
-        size="lg"
-        color="orange.400"
-        borderColor="orange.400"
-        variant="outline"
-        mx={[2, 4]}
-        onClick={props.onClickRandomizeRiver}
-      >
-        River
-      </Button>
-    </Box>
-  );
-}
+import React, { useState } from "react";
+import "./Controller.css";
 
 export interface ControlPaneProps {
   isOnlyFlopsChecked: boolean;
@@ -57,15 +13,39 @@ export interface ControlPaneProps {
 }
 
 export function ControlPane(props: ControlPaneProps) {
+  const [isActive, setIsActive] = useState(0);
   return (
-    <Box w="100%" position="relative" d="flex" mt={[16, 16]}>
+    <Box w="100%" position="relative" d="flex" mt={[12, 16]}>
       <Box flexBasis={1} flexGrow={1} />
-      <Box>
+      <Box
+        w={["90px", "120px"]}
+        h={["90px", "120px"]}
+        position="relative"
+        style={{
+          filter: "drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.3))",
+        }}
+      >
         <Image
           src="/chip.png"
-          w={["90px", "120px"]}
-          style={{ filter: "drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.4))" }}
-          onClick={props.onClickOpenButton}
+          className="open-button"
+          onTransitionEnd={() => setIsActive(0)}
+          isactive={isActive}
+          position="absolute"
+          w="100%"
+          h="100%"
+          zIndex="1"
+        />
+        <Box
+          position="absolute"
+          zIndex="2"
+          w="100%"
+          h="100%"
+          bgGradient="linear(45deg, rgba(0,0,0,.4), rgba(0,0,0,0))"
+          borderRadius="50%"
+          onClick={() => {
+            props.onClickOpenButton();
+            setIsActive(1);
+          }}
         />
       </Box>
       <Box

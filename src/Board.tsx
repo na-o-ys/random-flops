@@ -22,12 +22,14 @@ export function Board(props: BoardProps) {
   return (
     <Box
       w="100%"
-      px={[2, 2, 8]}
-      pt={["50px", "80px", "100px"]}
-      pb={[10, 12, "70px"]}
+      px={[0, 0, 8]}
+      pt={["60px", "80px", "100px"]}
+      pb={[8, 12, "70px"]}
       borderRadius={["2xl", "2xl"]}
-      backgroundColor="green.900"
+      backgroundColor="blue.800"
       boxShadow="dark-lg"
+      borderWidth={["6px", "8px"]}
+      borderColor="blue.900"
     >
       <Box d="flex">
         {board.map((card, idx) => (
@@ -67,7 +69,10 @@ export function CardContent({ card }: { card: Card }) {
     <AspectRatio ratio={691 / 1056}>
       <Box
         position="relative"
-        transform={["", `rotate(${rotate}deg) translateX(${transX}px)`]}
+        transform={[
+          `rotate(${rotate}deg) translateX(${transX * 0.6}px)`,
+          `rotate(${rotate}deg) translateX(${transX}px)`,
+        ]}
       >
         <Image
           src={fname}

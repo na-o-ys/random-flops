@@ -1,0 +1,8 @@
+.open-button {
+  transition: all 90ms 0s ease-in;
+}
+
+.open-button[isactive="1"] {
+  opacity: 90%;
+  transform: rotate(13deg);
+}
