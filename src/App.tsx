@@ -4,26 +4,25 @@ import { FaGithub } from "react-icons/fa";
 import { reducer } from "./action";
 import "./App.css";
 import { Board } from "./Board";
-import { Controller, ControllerProps } from "./Controller";
+import { ControlPaneProps } from "./Controller";
 import { getInitialState } from "./state";
 
 function App() {
-  const controllerProps: ControllerProps = {
-    onClickRandomizeFlop() {
-      dispatch({ type: "randomize_flop" });
+  const [state, dispatch] = useReducer(reducer, getInitialState());
+
+  const controlPaneProps: ControlPaneProps = {
+    isOnlyFlopsChecked: state.onlyFlops,
+    isLockThisFlopChecked: state.lockThisFlop,
+    toggleOnlyFlops() {
+      dispatch({ type: "toggle_only_flops" });
     },
-    onClickRandomizeTurn() {
-      dispatch({ type: "randomize_turn" });
+    toggleLockThisFlop() {
+      dispatch({ type: "toggle_lock_this_flop" });
     },
-    onClickRandomizeRiver() {
-      dispatch({ type: "randomize_river" });
-    },
-    onClickClear() {
-      dispatch({ type: "clear" });
+    onClickOpenButton() {
+      dispatch({ type: "open" });
     },
   };
-
-  const [state, dispatch] = useReducer(reducer, getInitialState());
   const innerHeight = `${window.innerHeight}px`;
 
   return (
@@ -38,10 +37,7 @@ function App() {
         color="gray.600"
       >
         <Box flexGrow={1} />
-        <Board board={state.board} />
-        <Box w="100%" d="flex" justifyContent="center">
-          <Controller {...controllerProps} />
-        </Box>
+        <Board board={state.board} controlPaneProps={controlPaneProps} />
         <Box flexGrow={1.3} />
         <Footer />
       </Box>
