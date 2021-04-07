@@ -3,6 +3,6 @@
 }
 
 .open-button[isactive="1"] {
-  opacity: 90%;
+  opacity: 0.9;
   transform: rotate(13deg);
 }
