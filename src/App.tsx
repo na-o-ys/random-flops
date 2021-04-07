@@ -4,25 +4,10 @@ import { FaGithub } from "react-icons/fa";
 import { reducer } from "./action";
 import "./App.css";
 import { Board } from "./Board";
-import { Controller, ControllerProps, ControlPaneProps } from "./Controller";
+import { ControlPaneProps } from "./Controller";
 import { getInitialState } from "./state";
 
 function App() {
-  // const controllerProps: ControllerProps = {
-  //   onClickRandomizeFlop() {
-  //     dispatch({ type: "randomize_flop" });
-  //   },
-  //   onClickRandomizeTurn() {
-  //     dispatch({ type: "randomize_turn" });
-  //   },
-  //   onClickRandomizeRiver() {
-  //     dispatch({ type: "randomize_river" });
-  //   },
-  //   onClickClear() {
-  //     dispatch({ type: "clear" });
-  //   },
-  // };
-
   const [state, dispatch] = useReducer(reducer, getInitialState());
 
   const controlPaneProps: ControlPaneProps = {
@@ -53,9 +38,6 @@ function App() {
       >
         <Box flexGrow={1} />
         <Board board={state.board} controlPaneProps={controlPaneProps} />
-        {/* <Box w="100%" d="flex" justifyContent="center">
-          <Controller {...controllerProps} />
-        </Box> */}
         <Box flexGrow={1.3} />
         <Footer />
       </Box>

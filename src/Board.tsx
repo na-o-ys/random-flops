@@ -23,8 +23,9 @@ export function Board(props: BoardProps) {
     <Box
       w="100%"
       px={[2, 2, 8]}
-      py={[10, 12, 16]}
-      borderRadius={["xl", "2xl"]}
+      pt={["50px", "80px", "100px"]}
+      pb={[10, 12, "70px"]}
+      borderRadius={["2xl", "2xl"]}
       backgroundColor="green.900"
       boxShadow="dark-lg"
     >
@@ -44,7 +45,7 @@ export function CardSpace({ card }: { card: Card | null }) {
       mx={[0.5, 1, 2]}
       p={[0, 1]}
       borderWidth="1px"
-      borderColor="gray.900"
+      borderColor="gray.400"
       borderRadius="md"
       w="100%"
     >
