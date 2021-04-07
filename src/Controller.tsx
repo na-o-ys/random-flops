@@ -1,5 +1,7 @@
 import { Button } from "@chakra-ui/button";
-import { Box } from "@chakra-ui/layout";
+import { Checkbox } from "@chakra-ui/checkbox";
+import { Image } from "@chakra-ui/image";
+import { Box, VStack } from "@chakra-ui/layout";
 import React from "react";
 
 export interface ControllerProps {
@@ -42,6 +44,42 @@ export function Controller(props: ControllerProps) {
       >
         River
       </Button>
+    </Box>
+  );
+}
+
+export interface ControlPaneProps {
+  isOnlyFlopsChecked: boolean;
+  isLockThisFlopChecked: boolean;
+  toggleOnlyFlops: () => void;
+  toggleLockThisFlop: () => void;
+  onClickOpenButton: () => void;
+}
+
+export function ControlPane(props: ControlPaneProps) {
+  return (
+    <Box w="100%" position="relative" d="flex" mt={[8, 12]}>
+      <Box flexBasis={1} flexGrow={1} />
+      <Box>
+        <Image src="/chip.png" w="120px" />
+      </Box>
+      <Box flexBasis={1} flexGrow={1}>
+        <VStack pl={1} align="flex-start">
+          <Checkbox
+            onChange={props.toggleOnlyFlops}
+            isChecked={props.isOnlyFlopsChecked}
+            isDisabled={props.isLockThisFlopChecked}
+          >
+            only flops
+          </Checkbox>
+          <Checkbox
+            onChange={props.toggleLockThisFlop}
+            isChecked={props.isLockThisFlopChecked}
+          >
+            lock this flop
+          </Checkbox>
+        </VStack>
+      </Box>
     </Box>
   );
 }

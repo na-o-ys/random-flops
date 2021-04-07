@@ -1,9 +1,13 @@
 import { Image } from "@chakra-ui/image";
 import { AspectRatio, Box } from "@chakra-ui/layout";
 import React from "react";
+import { ControlPane, ControlPaneProps } from "./Controller";
 import { Card, State } from "./state";
 
-export type BoardProps = { board: State["board"] };
+export type BoardProps = {
+  board: State["board"];
+  controlPaneProps: ControlPaneProps;
+};
 
 export function Board(props: BoardProps) {
   let board: (Card | null)[] = [];
@@ -29,6 +33,7 @@ export function Board(props: BoardProps) {
           <CardSpace key={idx} card={card} />
         ))}
       </Box>
+      <ControlPane {...props.controlPaneProps} />
     </Box>
   );
 }
@@ -39,7 +44,7 @@ export function CardSpace({ card }: { card: Card | null }) {
       mx={[0.5, 1, 2]}
       p={[0, 1]}
       borderWidth="1px"
-      borderColor="gray.300"
+      borderColor="gray.900"
       borderRadius="md"
       w="100%"
     >

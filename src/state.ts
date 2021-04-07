@@ -2,6 +2,8 @@ import { randomizeFlop } from "./action";
 
 export interface State {
   board: EmptyBoard | FlopBoard | TurnBoard | RiverBoard;
+  onlyFlops: boolean;
+  lockThisFlop: boolean;
 }
 
 export interface Card {
@@ -30,5 +32,9 @@ export interface RiverBoard {
 }
 
 export function getInitialState(): State {
-  return randomizeFlop();
+  return randomizeFlop({
+    board: { type: "empty" },
+    onlyFlops: false,
+    lockThisFlop: false,
+  });
 }
